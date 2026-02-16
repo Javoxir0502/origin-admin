@@ -3,7 +3,7 @@ from rest_framework.response import Response
 from .models import Mahsulot
 from .serializers import MahsulotSerializer
 
-class MahsulotAPI(APIView):     
+class MahsulotAPI(APIView):
     def get(self, request):
         malumot = Mahsulot.objects.all() 
         serializer = MahsulotSerializer(malumot, many=True)
