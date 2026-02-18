@@ -15,3 +15,25 @@ class MahsulotAPI(APIView):
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response(serializer.data)
+
+    def put(self, request, pk):
+        malumot = Mahsulot.objects.get(pk=pk)
+        serializer = MahsulotSerializer(malumot, data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(serializer.data)
+
+    def delete(self, request, pk):
+        malumot = Mahsulot.objects.get(pk=pk)
+        malumot.delete()
+        return Response({"message": "Mahsulot o'chirildi"})
+    
+    def patch(self, request, pk):
+        malumot = Mahsulot.objects.get(pk=pk)
+        serializer = MahsulotSerializer(malumot, data=request.data, partial=True)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(serializer.data)
+
+    def get_object(self, pk):
+        return Mahsulot.objects.get(pk=pk)
